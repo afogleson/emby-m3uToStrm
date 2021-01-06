@@ -1,0 +1,6 @@
+rootProject.name = 'CreateStreams'
+include 'src:main'
+findProject(':src:main')?.name = 'main'
+include 'src:main'
+findProject(':src:main')?.name = 'main'
+

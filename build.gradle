@@ -1,0 +1,43 @@
+plugins {
+    id 'idea'
+    id 'application'
+    id 'java'
+    id 'distribution'
+}
+
+group 'com.afogleson'
+version '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+distributions {
+    main {
+        contents {
+            from 'src/distribution/'
+        }
+    }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+}
+
+application {
+    mainClassName = 'M3uHandler'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes(
+                'Class-Path': configurations.runtime.files.collect { "libs/$it.name" }.join(' '),
+                'Main-Class': 'M3uHandler'
+        )
+    }
+}
